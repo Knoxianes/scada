@@ -1,20 +1,20 @@
 ﻿dCom
 
 
-winexe
+exe
 C#
 .cs
-C:\Users\strah\OneDrive\Dokumenti\Faks\Scada\scada materijali\dCom\dCom\obj\Debug\
+C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\dCom\obj\Debug\
 dCom
 none
 false
 DEBUG;TRACE
-C:\Users\strah\OneDrive\Dokumenti\Faks\Scada\scada materijali\dCom\dCom\App.xaml
+C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\dCom\App.xaml
 2-990244966
 
 251416426300
-16-1362444753
+16657062057
 ControlWindow.xaml;MainWindow.xaml;
 
-False
+True
 
