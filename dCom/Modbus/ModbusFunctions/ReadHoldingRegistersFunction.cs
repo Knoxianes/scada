@@ -49,8 +49,9 @@ namespace Modbus.ModbusFunctions
         public override Dictionary<Tuple<PointType, ushort>, ushort> ParseResponse(byte[] response)
         {
             //TO DO: IMPLEMENT
+            var Command_Parameters = this.CommandParameters as ModbusReadCommandParameters;
             var tmp = new Dictionary<Tuple<PointType, ushort>, ushort>();
-            var tuple = new Tuple<PointType, ushort>(PointType.ANALOG_OUTPUT, (ushort)1000);
+            var tuple = new Tuple<PointType, ushort>(PointType.ANALOG_OUTPUT, Command_Parameters.StartAddress);
             var data  = new byte[2];
             for(int i =0; i < 2; i++)
             {
