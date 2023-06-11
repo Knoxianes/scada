@@ -65,6 +65,7 @@ namespace ProcessingModule
                 acquisitionTrigger.WaitOne();
                 foreach(IConfigItem config in lista_configa)
                 {
+                    ;
                     config.SecondsPassedSinceLastPoll++;
                     if(config.SecondsPassedSinceLastPoll  == config.AcquisitionInterval)
                     {
