@@ -39,7 +39,6 @@ namespace Modbus.ModbusFunctions
             message[9] = (byte)Command_Parameters.OutputAddress;
             message[10] = (byte)(Command_Parameters.Value >> 8);
             message[11] = (byte)Command_Parameters.Value;
-            Console.WriteLine("Poslato");
 
             return message;
         }
