@@ -18,5 +18,10 @@ namespace dCom
 			this.DataContext = dataContext;
 			Title = string.Format("Control Window - {0}", dataContext.Name);
 		}
-	}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
