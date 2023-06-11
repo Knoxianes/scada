@@ -13,10 +13,11 @@ namespace ProcessingModule
         /// <param name="scalingFactor">The scaling factor.</param>
         /// <param name="deviation">The deviation</param>
         /// <param name="rawValue">The raw value.</param>
-        /// <returns>The value in engineering units.</returns>
+        /// <returns>The value in engineering units.</returns>//egu=raw*scalling+deviation 
 		public double ConvertToEGU(double scalingFactor, double deviation, ushort rawValue)
 		{
-            return rawValue;
+            double eguValue = rawValue * scalingFactor + deviation;
+            return eguValue;
 		}
 
         /// <summary>
@@ -28,7 +29,8 @@ namespace ProcessingModule
         /// <returns>The raw value.</returns>
 		public ushort ConvertToRaw(double scalingFactor, double deviation, double eguValue)
         {
-            return (ushort)eguValue;
+            ushort rawValue =(ushort) ((eguValue - deviation)/scalingFactor);
+            return rawValue;
 		}
 	}
 }
