@@ -3,5 +3,4 @@ TCP 25252
 
 HR_INT  1 1000  0  0    800   400  AO  @Udaljenost_kapije_od_w1 
 DI_REG  1 2000  0  0      1     0  DI  @Indikacije_prepreke     
-DO_REG  1 3000  0  0      1     0  DO  @Open                    
-DO_REG  1 3001  0  0      1     1  DO  @Close                   
+DO_REG  2 3000  0  0      1     0  DO  @Open/Close                  
