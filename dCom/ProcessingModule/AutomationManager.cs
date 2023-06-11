@@ -1,5 +1,6 @@
 ﻿using Common;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace ProcessingModule
@@ -60,9 +61,78 @@ namespace ProcessingModule
 
 		private void AutomationWorker_DoWork()
 		{
-			//while (!disposedValue)
-			//{
-			//}
+			const int step = 10;
+			EGUConverter egu = new EGUConverter();
+			PointIdentifier kapija = new PointIdentifier(PointType.ANALOG_OUTPUT, 1000);
+			PointIdentifier prepreka = new PointIdentifier(PointType.DIGITAL_INPUT, 2000);
+			PointIdentifier otvaranje = new PointIdentifier(PointType.DIGITAL_OUTPUT, 3000);
+            PointIdentifier zatvaranje = new PointIdentifier(PointType.DIGITAL_OUTPUT, 3001);
+			List<PointIdentifier> lista = new List<PointIdentifier>() { kapija, prepreka, otvaranje, zatvaranje }; 
+            while (!disposedValue)
+			{
+				List<IPoint> points =storage.GetPoints(lista);
+
+                if (points[0].Alarm == AlarmType.HIGH_ALARM && points[3].RawValue == 1)
+                {
+                    processingManager.ExecuteWriteCommand(points[3].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, zatvaranje.Address, 0);
+                    for (int i = 0; i < delayBetweenCommands; i += 1000)
+                    {
+                        automationTrigger.WaitOne();
+                    }
+                    continue;
+                }
+                if (points[0].Alarm == AlarmType.LOW_ALARM && points[2].RawValue == 1)
+                {
+                    processingManager.ExecuteWriteCommand(points[2].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, otvaranje.Address, 0);
+                    for (int i = 0; i < delayBetweenCommands; i += 1000)
+                    {
+                        automationTrigger.WaitOne();
+                    }
+                    continue;
+                }
+
+                if (points[2].RawValue != points[3].RawValue)
+				{
+                    if (points[2].RawValue == 1)
+                    {
+                        int value = (int)egu.ConvertToEGU(points[0].ConfigItem.ScaleFactor, points[0].ConfigItem.Deviation, points[0].RawValue);
+                        value -= step;
+                        processingManager.ExecuteWriteCommand(points[0].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, kapija.Address, value);
+                    }
+                    if (points[3].RawValue == 1)
+                    {
+
+                        int value = (int)egu.ConvertToEGU(points[0].ConfigItem.ScaleFactor, points[0].ConfigItem.Deviation, points[0].RawValue);
+                        if (points[1].RawValue == 1)
+                        {
+                            processingManager.ExecuteWriteCommand(points[3].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, zatvaranje.Address, 0);
+                            processingManager.ExecuteWriteCommand(points[2].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, otvaranje.Address, 1);
+                            while (value > points[0].ConfigItem.EGU_Min)
+                            {
+                                value -= step;
+                                processingManager.ExecuteWriteCommand(points[0].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, kapija.Address, value);
+                                for (int i = 0; i < delayBetweenCommands; i += 1000)
+                                {
+                                    automationTrigger.WaitOne();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            value += step;
+                            processingManager.ExecuteWriteCommand(points[0].ConfigItem, configuration.GetTransactionId(), configuration.UnitAddress, kapija.Address, value);
+                        }
+						
+
+                    }
+                }
+				
+                for (int i = 0; i < delayBetweenCommands; i += 1000)
+				{
+					automationTrigger.WaitOne();
+				}
+			
+            }
 		}
 
 		#region IDisposable Support

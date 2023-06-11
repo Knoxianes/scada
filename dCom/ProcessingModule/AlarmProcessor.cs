@@ -15,10 +15,11 @@ namespace ProcessingModule
         /// <returns>The alarm indication.</returns>
 		public AlarmType GetAlarmForAnalogPoint(double eguValue, IConfigItem configItem)
 		{
-			if(eguValue < configItem.EGU_Min)
+			if(eguValue <= configItem.EGU_Min)
             {
                 return AlarmType.LOW_ALARM;
-            }else if(eguValue > configItem.EGU_Max)
+
+            }else if(eguValue >= configItem.EGU_Max)
             {
                 return AlarmType.HIGH_ALARM;
             }
