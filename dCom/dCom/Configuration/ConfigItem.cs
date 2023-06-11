@@ -294,10 +294,24 @@ namespace dCom.Configuration
                 Int32.TryParse(configurationParameters[9], out temp);
                 AcquisitionInterval = temp;
             }
-			double.TryParse(configurationParameters[10], out doubleTemp);
-			ScaleFactor = doubleTemp;
-            double.TryParse(configurationParameters[11], out doubleTemp);
-            Deviation = doubleTemp;
+			if (configurationParameters[10].Equals("#"))
+			{
+				ScaleFactor = 1;
+			}
+			else
+			{
+                double.TryParse(configurationParameters[10], out doubleTemp);
+                ScaleFactor = doubleTemp;
+            }
+			if (configurationParameters[11].Equals("#"))
+			{
+				Deviation = 0;
+			}
+			else
+			{
+                double.TryParse(configurationParameters[11], out doubleTemp);
+                Deviation = doubleTemp;
+            }
             double.TryParse(configurationParameters[12], out doubleTemp);
             EGU_Max = doubleTemp;
             double.TryParse(configurationParameters[13], out doubleTemp);

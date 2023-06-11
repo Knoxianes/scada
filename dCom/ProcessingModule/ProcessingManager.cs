@@ -131,6 +131,7 @@ namespace ProcessingModule
             point.RawValue = newValue;
             point.Timestamp = DateTime.Now;
             point.State = (DState)newValue;
+            point.Alarm = alarmProcessor.GetAlarmForDigitalPoint(((ushort)point.State),point.ConfigItem);
 
         }
 
