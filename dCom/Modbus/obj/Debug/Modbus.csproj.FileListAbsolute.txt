@@ -16,3 +16,12 @@ C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\Modbus\obj\Debug\Modbus.cspr
 C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\Modbus\obj\Debug\Modbus.csproj.CopyComplete
 C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\Modbus\obj\Debug\Modbus.dll
 C:\Users\strah\OneDrive\Dokumenti\GitHub\scada\dCom\Modbus\obj\Debug\Modbus.pdb
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\bin\Debug\Modbus.dll
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\bin\Debug\Modbus.pdb
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\bin\Debug\Common.dll
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\bin\Debug\Common.pdb
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\obj\Debug\Modbus.csproj.AssemblyReference.cache
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\obj\Debug\Modbus.csproj.CoreCompileInputs.cache
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\obj\Debug\Modbus.csproj.CopyComplete
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\obj\Debug\Modbus.dll
+C:\Users\veljk\Desktop\scada\scada\dCom\Modbus\obj\Debug\Modbus.pdb
